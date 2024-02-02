@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Configures a Ubuntu server with specific IP addresses
+# to `localhost` and `facebook.com` hostname
+
+# Copy the original /etc/hosts file to the user's home directory
+cp /etc/hosts ~/hosts.new
+
+# Modify the hosts.new file to set localhost back to 127.0.0.1
+sed -i 's/^127.0.0.2[[:space:]]*localhost/127.0.0.1 localhost/' ~/hosts.new
+
+# Add or update the entry for facebook.com to resolve to 8.8.8.8
+echo "8.8.8.8 facebook.com" >> ~/hosts.new
+
+# Overwrite the original /etc/hosts file with the modified hosts.new file
+sudo cp ~/hosts.new /etc/hosts
+
+# Clean up: remove the temporary hosts.new file
+rm ~/hosts.new
+
+echo "Configuration changed. Verify using 'ping localhost' and 'ping facebook.com'."
