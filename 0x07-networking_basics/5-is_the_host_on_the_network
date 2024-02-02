@@ -1,0 +1,15 @@
+#!/bin/env bash
+# The scrip-ts pings an ip passed as an argument.
+# The script pings 5 times
+
+# Check if an argument is provided
+if [ -z "$1" ]; then
+	echo "Usage: $0 {IP_ADDRESS}"
+	exit 1
+fi
+
+# Extract the IP address from the command line argument
+ip_address=$1
+
+# Perform the ping and display the result
+ping -c 5 "$ip_address"
