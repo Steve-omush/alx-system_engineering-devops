@@ -1,0 +1,4 @@
+#!/bin/env bash
+
+# Use ifconfig to display network interface information
+ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | awk '{print $2}' | tr -d 'addr:'
